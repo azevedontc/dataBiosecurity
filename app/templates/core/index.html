@@ -1,0 +1,101 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block body %}
+<div class="container mx-auto mt-8">
+  <div class="max-w-md mx-auto bg-white p-5 rounded-md shadow-md">
+    <div class="flex justify-between">
+      <h1 class="text-2xl font-semibold mb-5">Informações do Usuário</h1>
+      <a href="{% url 'edit' request.user.id %}">Editar</a>
+    </div>
+      <div class="grid grid-cols-1 gap-4">
+          <div class="flex gap-2">
+              <label for="username" class="block mb-1 font-bold">Nome de Usuário:</label>
+              <p>{{ request.user.username }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="first_name" class="block mb-1 font-bold">Nome:</label>
+              <p>{{ request.user.first_name }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="email" class="block mb-1 font-bold">E-mail:</label>
+              <p>{{ request.user.email }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="cpf" class="block mb-1 font-bold">CPF:</label>
+              <p>{{ request.user.cpf }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="nascimento" class="block mb-1 font-bold">Data de Nascimento:</label>
+              <p>{{ request.user.nascimento }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="endereco" class="block mb-1 font-bold">Endereço:</label>
+              <p>{{ request.user.endereco }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="contato" class="block mb-1 font-bold">Contato:</label>
+              <p>{{ request.user.contato }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="contato_emergencia" class="block mb-1 font-bold">Contato de Emergência:</label>
+              <p>{{ request.user.contato_emergencia }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="rede_social" class="block mb-1 font-bold">Rede Social:</label>
+              <p>{{ request.user.rede_social }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="escolaridade" class="block mb-1 font-bold">Escolaridade:</label>
+              <p>{{ request.user.escolaridade }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="aluno_udc" class="block mb-1 font-bold">Aluno(a) da UDC?:</label>
+              <p>{{ request.user.aluno_udc }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="genero" class="block mb-1 font-bold">Gênero:</label>
+              <p>{{ request.user.genero }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="tipo_sanguineo" class="block mb-1 font-bold">Tipo Sanguíneo:</label>
+              <p>{{ request.user.tipo_sanguineo }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="alergias" class="block mb-1 font-bold">Alergias:</label>
+              <p>{{ request.user.alergias }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="alergia_descricao" class="block mb-1 font-bold">Descrição das Alergias:</label>
+              <p>{{ request.user.alergia_descricao }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="raca" class="block mb-1 font-bold">Raça:</label>
+              <p>{{ request.user.raca }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="profissao" class="block mb-1 font-bold">Profissão:</label>
+              <p>{{ request.user.profissao }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="estado_civil" class="block mb-1 font-bold">Estado Civil:</label>
+              <p>{{ request.user.estado_civil }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="filho" class="block mb-1 font-bold">Tem Filhos?:</label>
+              <p>{{ request.user.filho }}</p>
+          </div>
+          <div class="flex gap-2">
+              <label for="qtd_filhos" class="block mb-1 font-bold">Número de Filhos:</label>
+              <p>{{ request.user.qtd_filhos }}</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock body %}

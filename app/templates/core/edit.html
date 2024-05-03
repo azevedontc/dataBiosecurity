@@ -1,0 +1,14 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block body %}
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update">
+    </form>
+{% endblock body %}

@@ -1,0 +1,138 @@
+{% load static %} {% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+
+  {% if user.theme == 'dark' %} {% else %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  {% endif %}
+
+  <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body>
+  <section class="auth">
+    
+    <main class="auth__content">
+
+      <form action="{% url 'register' %}" method="post" class="form">
+        {% csrf_token %}
+
+        {{ form }}
+        <!-- <div class="field">
+          {{ form.username }}
+          {{ form.username.errors }}
+        </div>
+        <div class="two-fields">
+          <div class="field">
+              {{ form.first_name }}
+              {{ form.first_name.errors }}
+          </div>
+        </div>
+        <div class="field">
+          {{ form.email }}
+          {{ form.email.errors }}
+        </div>
+        <div class="field">
+            {{ form.cpf }}
+            {{ form.email.errors }}
+        </div>
+        <div class="field">
+            {{ form.nascimento }}
+            {{ form.email.errors }}
+        </div>
+        <div class="field">
+            {{ form.endereco }}
+            {{ form.email.errors }}
+        </div>
+        <div class="field">
+            {{ form.contato }}
+            {{ form.email.errors }}
+        </div>
+        <div class="field">
+            {{ form.contato_emergencia }}
+            {{ form.email.errors }}
+        </div>
+        <div class="field">
+            {{ form.rede_social }}
+            {{ form.email.errors }}
+        </div>
+        <div class="field">
+            {{ form.genero }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            {{ form.escolaridade }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            {{ form.aluno_utc }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            {{ form.tipo_sanguineo }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            {{ form.alergias }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            {{ form.alergia_descricao }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            {{ form.raca }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            {{ form.profissao }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            {{ form.estado_civil }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            {{ form.filho }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            {{ form.qtd_filhos }}
+            {{ form.email.errors }}
+          </div>
+        <div class="field">
+          {{ form.password }}
+          {{ form.password.errors }}
+        </div>
+        <div class="field">
+          {{ form.confirmation }}
+          {{ form.confirmation.errors }}
+        </div> -->
+
+        <button type="submit" class="btn btn--primary">Criar conta</button>
+        
+        {% if error %}
+            {{ error }}
+        {% endif %}
+
+        <div class="auth__redirect subtext">
+          <p>
+            Já tem uma conta?
+            <a href="{% url 'login' %}">
+              Entrar
+            </a>
+            <!-- <a href="{% url 'password_reset' %}"> -->
+              <!-- {% trans 'Forgot Password?' %} -->
+            <!-- </a> -->
+          </p>
+        </div>
+      </form>
+    </main>
+  </section>
+</body>
+</html>
