@@ -8,8 +8,8 @@ from .models import User
 UserModel = get_user_model()
 
 class Login_form(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'field__input', 'id': 'username', 'placeholder': 'Username', 'autocomplete': 'off', 'autofocus': 'on'}), required=True,  label="")
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'field__input', 'id': 'password', 'placeholder': 'Password'}), required=True, label="")    
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'id': 'username', 'placeholder': 'Nome de usuario', 'autocomplete': 'off', 'autofocus': 'on'}), required=True,  label="")
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'id': 'password', 'placeholder': 'Senha'}), required=True, label="")    
 
 
 # class Register_form(forms.ModelForm):
@@ -58,44 +58,71 @@ class Register_form(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'password', 'cpf', 'nascimento', 'endereco', 'contato', 'contato_emergencia', 'rede_social', 'escolaridade', 'aluno_udc', 'genero', 'tipo_sanguineo', 'alergias', 'alergia_descricao', 'raca', 'profissao', 'estado_civil', 'filho', 'qtd_filhos']
+        fields = ['username', 'first_name', 'last_name', 'email', 'cpf', 'nascimento', 'endereco', 'contato', 'contato_emergencia', 'rede_social', 'escolaridade', 'aluno_udc', 'genero', 'tipo_sanguineo', 'alergias', 'alergia_descricao', 'raca', 'profissao', 'estado_civil', 'filho', 'qtd_filhos', 'password']
+        labels = {
+            'username': 'Nome de usuário',
+            'first_name': 'Nome',
+            'last_name': 'Sobrenome',
+            'email': 'Email',
+            'cpf': 'CPF',
+            'nascimento': 'Nascimento',
+            'endereco': 'Endereço',
+            'contato': 'Contato',
+            'contato_emergencia': 'Contato emergencial',
+            'rede_social': 'Rede social',
+            'escolaridade': 'Escolaridade',
+            'aluno_udc': 'Aluno da UDC?',
+            'genero': 'Gênero',
+            'tipo_sanguineo': 'Tipo sanguineo',
+            'alergias': 'Alergias',
+            'alergia_descricao': 'Alergia descrição',
+            'raca': 'raça',
+            'profissao': 'Profissão',
+            'estado_civil': 'Estado civil',
+            'filho': 'Possui filhos?',
+            'qtd_filhos': 'Quantidade de filhos*',
+            'password': 'Senha',
+            'confirmation': 'Confirmação da Senha',
+            # Add labels for other fields if needed
+        }
 
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'field__input', 'placeholder': 'Nome de usuario', 'autocomplete': 'off', 'autofocus': 'on'}), max_length=16, label="")
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'field__input', 'placeholder': 'Nome', 'maxlenght': "50", 'autocomplete': 'off'}), label="")
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'field__input', 'placeholder': 'Email', 'autocomplete': 'off'}), label="")
-    cpf = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CPF'}), max_length=14, label="")
-    nascimento = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}), label="")
-    endereco = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Endereço'}), max_length=100, label="")
-    contato = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contato'}), max_length=15, label="")
-    contato_emergencia = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contato de Emergência'}), max_length=15, label="")
-    rede_social = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Rede Social'}), max_length=100, required=False, label="")
-    escolaridade = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=User.ESCOLARIDADE_CHOICES, label="")
-    aluno_udc = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=User.ALUNO_UDC_CHOICES, label="")
-    genero = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=User.GENERO_CHOICES, label="")
-    tipo_sanguineo = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=User.TIPO_SANGUINEO_CHOICES, label="")
-    alergias = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=User.ALERGIAS_CHOICES, label="")
-    alergia_descricao = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Descrição das Alergias'}), max_length=100, required=False, label="")
-    raca = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=User.RACA_CHOICES, label="")
-    profissao = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Profissão'}), max_length=50, label="")
-    estado_civil = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=User.ESTADO_CIVIL_CHOICES, label="")
-    filho = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=User.FILHO_CHOICES, label="")
-    qtd_filhos = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Quantidade de Filhos'}), required=False, label="")
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'field__input', 'placeholder': 'Password', 'autocomplete': 'off'}), label="")
-    confirmation = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'field__input', 'placeholder': 'Confirmation', 'autocomplete': 'off'}), label="")
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'autocomplete': 'off', 'autofocus': 'on'}), max_length=16, label="Nome de usuário")
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'maxlenght': "50", 'autocomplete': 'off'}), label="Nome")
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'maxlenght': "50", 'autocomplete': 'off'}), label="Sobrenome")
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'autocomplete': 'off'}), label="Email")
+    cpf = forms.CharField(widget=forms.TextInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500',}), max_length=14, label="CPF")
+    nascimento = forms.DateField(widget=forms.DateInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'type': 'date'}), label="Nascimento")
+    endereco = forms.CharField(widget=forms.TextInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500',}), max_length=100, label="Endereço")
+    contato = forms.CharField(widget=forms.TextInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500',}), max_length=15, label="Contato")
+    contato_emergencia = forms.CharField(widget=forms.TextInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500',}), max_length=15, label="Contato emergência")
+    rede_social = forms.CharField(widget=forms.TextInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500',}), max_length=100, required=False, label="Rede social")
+    escolaridade = forms.ChoiceField(widget=forms.Select(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500'}), choices=User.ESCOLARIDADE_CHOICES, label="Escolaridade")
+    aluno_udc = forms.ChoiceField(widget=forms.Select(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500'}), choices=User.ALUNO_UDC_CHOICES, label="Aluno da UDC")
+    genero = forms.ChoiceField(widget=forms.Select(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500'}), choices=User.GENERO_CHOICES, label="Gênero")
+    tipo_sanguineo = forms.ChoiceField(widget=forms.Select(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500'}), choices=User.TIPO_SANGUINEO_CHOICES, label="Tipo sanguíneo")
+    alergias = forms.ChoiceField(widget=forms.Select(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500'}), choices=User.ALERGIAS_CHOICES, label="Alergias")
+    alergia_descricao = forms.CharField(widget=forms.TextInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500'}), max_length=100, required=False, label="Descrição alergias")
+    raca = forms.ChoiceField(widget=forms.Select(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500'}), choices=User.RACA_CHOICES, label="Raça")
+    profissao = forms.CharField(widget=forms.TextInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500',}), max_length=50, label="Profissão")
+    estado_civil = forms.ChoiceField(widget=forms.Select(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500'}), choices=User.ESTADO_CIVIL_CHOICES, label="Estado civil")
+    filho = forms.ChoiceField(widget=forms.Select(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500'}), choices=User.FILHO_CHOICES, label="Possuí filhos?")
+    qtd_filhos = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500'}), required=False, label="Quantidade de filhos")
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'autocomplete': 'off'}), label="Senha")
+    confirmation = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'autocomplete': 'off'}), label="Confirme a senha")
 
     
     def clean_username(self):
         ''' verify is the username is already taken.'''
         username = self.cleaned_data['username']
         if User.objects.filter(username=username).exists():
-            raise forms.ValidationError(_("Username already taken"), code="username taken")
+            raise forms.ValidationError(_("Nome de usuário já cadastrado"), code="username taken")
         return username
     
     def clean_email(self):
         ''' verify if the email is already registered '''
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(_("Email has already been taken."), code="email taken")
+            raise forms.ValidationError(_("Email já cadastrado."), code="email taken")
 
         return email
 
@@ -105,7 +132,6 @@ class Register_form(forms.ModelForm):
             first_name=self.cleaned_data['first_name'],
             last_name=self.cleaned_data['last_name'],
             email=self.cleaned_data['email'].lower(),
-            password=self.cleaned_data['password'],
             cpf=self.cleaned_data['cpf'],
             nascimento=self.cleaned_data['nascimento'],
             endereco=self.cleaned_data['endereco'],
@@ -123,6 +149,7 @@ class Register_form(forms.ModelForm):
             estado_civil=self.cleaned_data['estado_civil'],
             filho=self.cleaned_data['filho'],
             qtd_filhos=self.cleaned_data['qtd_filhos'],
+            password=self.cleaned_data['password'],
         )
         user.save()
         return user
@@ -132,27 +159,37 @@ class UserEditForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'cpf', 'nascimento', 'endereco', 'contato', 'contato_emergencia', 'rede_social', 'escolaridade', 'aluno_udc', 'genero', 'tipo_sanguineo', 'alergias', 'alergia_descricao', 'raca', 'profissao', 'estado_civil', 'filho', 'qtd_filhos')
+        exclude = ('password', 'confirmation', 'username')  # Exclude password field from the form
+        labels = {
+            'first_name': 'Nome',
+            'last_name': 'Sobrenome',
+            'email': 'Email',
+            'password': '',
+            # Add labels for other fields if needed
+        }
+        help_texts = {}
+        label_suffix = ''  # Set label suffix to an empty string to hide all labels
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Nome de usuário'})
-        self.fields['first_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Nome'})
-        self.fields['last_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Sobrenome'})
-        self.fields['email'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Email'})
-        self.fields['cpf'].widget.attrs.update({'class': 'form-control', 'placeholder': 'CPF'})
-        self.fields['nascimento'].widget.attrs.update({'class': 'form-control', 'type': 'date'})
-        self.fields['endereco'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Endereço'})
-        self.fields['contato'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Contato'})
-        self.fields['contato_emergencia'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Contato de Emergência'})
-        self.fields['rede_social'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Rede Social'})
-        self.fields['escolaridade'].widget.attrs.update({'class': 'form-control'})
-        self.fields['aluno_udc'].widget.attrs.update({'class': 'form-control'})
-        self.fields['genero'].widget.attrs.update({'class': 'form-control'})
-        self.fields['tipo_sanguineo'].widget.attrs.update({'class': 'form-control'})
-        self.fields['alergias'].widget.attrs.update({'class': 'form-control'})
-        self.fields['alergia_descricao'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Descrição das Alergias'})
-        self.fields['raca'].widget.attrs.update({'class': 'form-control'})
-        self.fields['profissao'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Profissão'})
-        self.fields['estado_civil'].widget.attrs.update({'class': 'form-control'})
-        self.fields['filho'].widget.attrs.update({'class': 'form-control'})
-        self.fields['qtd_filhos'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Quantidade de Filhos'})
+        # self.fields['username'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Nome de usuário'})
+        self.fields['first_name'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Nome', 'label': ""})
+        self.fields['last_name'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Sobrenome', 'label': ""})
+        self.fields['email'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Email', 'label': ""})
+        self.fields['cpf'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'CPF', 'label': ""})
+        self.fields['nascimento'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'type': 'date', 'label': ""})
+        self.fields['endereco'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Endereço', 'label': ""})
+        self.fields['contato'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Contato', 'label': ""})
+        self.fields['contato_emergencia'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Contato de Emergência', 'label': ""})
+        self.fields['rede_social'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Rede Social', 'label': ""})
+        self.fields['escolaridade'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'label': ""})
+        self.fields['aluno_udc'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'label': ""})
+        self.fields['genero'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'label': ""})
+        self.fields['tipo_sanguineo'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'label': ""})
+        self.fields['alergias'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'label': ""})
+        self.fields['alergia_descricao'].widget.attrs.update({'class': 'border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Descrição das Alergias', 'label': ""})
+        self.fields['raca'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'label': ""})
+        self.fields['profissao'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Profissão', 'label': ""})
+        self.fields['estado_civil'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'label': ""})
+        self.fields['filho'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'label': ""})
+        self.fields['qtd_filhos'].widget.attrs.update({'class': 'my-2 w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-500', 'placeholder': 'Quantidade de Filhos', 'label': ""})

@@ -44,7 +44,7 @@ def login_view(request):
                 login(request, user)
                 return HttpResponseRedirect(reverse("index"))
             else:
-                context["error"] = "Invalid username and/or password."
+                context["error"] = "Nome de usuário e/ou senha invalidos."
                 return render(request, "core/login.html", context)
 
     return render(request, "core/login.html", context)

@@ -13,16 +13,24 @@
   {% endif %}
 
   <script src="{% static 'js/main.js' %}" defer></script>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    .errorlist {
+      color: #ff4949;
+    }
+  </style>
 </head>
 <body>
-  <section class="auth">
-    
-    <main class="auth__content">
-
-      <form action="{% url 'register' %}" method="post" class="form">
-        {% csrf_token %}
-
-        {{ form }}
+  <main class="min-h-screen flex justify-center items-center">
+    <form action="{% url 'register' %}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      {% csrf_token %}
+        
+      {{ form }}
+      
+      {% if error %}
+        <p class="my-1 text-red-500 font-medium">{{ error }}</p>
+      {% endif %}
         <!-- <div class="field">
           {{ form.username }}
           {{ form.username.errors }}
@@ -114,16 +122,16 @@
           {{ form.confirmation.errors }}
         </div> -->
 
-        <button type="submit" class="btn btn--primary">Criar conta</button>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full cursor-pointer">Criar conta</button>
         
         {% if error %}
-            {{ error }}
+          <p class="my-1 text-red-500 font-medium">{{ error }}</p>
         {% endif %}
 
         <div class="auth__redirect subtext">
           <p>
             Já tem uma conta?
-            <a href="{% url 'login' %}">
+            <a href="{% url 'login' %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
               Entrar
             </a>
             <!-- <a href="{% url 'password_reset' %}"> -->
